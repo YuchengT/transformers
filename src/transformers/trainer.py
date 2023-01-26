@@ -848,6 +848,7 @@ class Trainer:
                 collate_fn=data_collator,
                 num_workers=self.args.dataloader_num_workers,
                 pin_memory=self.args.dataloader_pin_memory,
+                persistent_workers=True,
             )
 
         train_sampler = self._get_train_sampler()
@@ -861,6 +862,7 @@ class Trainer:
             num_workers=self.args.dataloader_num_workers,
             pin_memory=self.args.dataloader_pin_memory,
             worker_init_fn=seed_worker,
+            persistent_workers=True,
         )
 
     def _get_eval_sampler(self, eval_dataset: Dataset) -> Optional[torch.utils.data.Sampler]:
